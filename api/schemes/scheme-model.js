@@ -140,11 +140,15 @@ function findSteps(scheme_id) { // EXERCISE C
  .orderBy('step_number', 'asc');
 };
 
-function add(scheme) { // EXERCISE D
+async function add(scheme) { // EXERCISE D
   /*
     1D- This function creates a new scheme and resolves to _the newly created scheme_.
   */
-}
+
+  // **************** scheme_id keeps coming back null even though it adds successfully...
+  const [scheme_id] = await db('schemes').insert(scheme, ['scheme_id', 'scheme_name']);
+  return findById(scheme_id);
+};
 
 function addStep(scheme_id, step) { // EXERCISE E
   /*
